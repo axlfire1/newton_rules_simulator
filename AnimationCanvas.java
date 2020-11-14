@@ -25,6 +25,6 @@ public class AnimationCanvas extends Canvas {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, WIDTH, HEIGHT);
         g.setColor(Color.BLACK);
-        g.fillOval(100, 100, 30, 30);
+        g.fillOval(10, 10, 30, 30);
     }
 }

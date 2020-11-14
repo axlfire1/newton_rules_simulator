@@ -52,7 +52,7 @@ public class MainFrame extends JFrame implements ActionListener {
         });
         configure_simulation_menu_item.addActionListener((ActionEvent e) -> {
             String veicles_number = JOptionPane.showInputDialog(null,
-                    "Ingresa cuantos veiculos vas a simular? \n (permitidos 2 y 3)", "veiculos a simular",
+                    "Ingresa cuantos veiculos vas a simular? \n (permitidos de 2 a 4)", "veiculos a simular",
                     JOptionPane.QUESTION_MESSAGE);
             lunch_configuration(veicles_number);
         });
@@ -75,6 +75,9 @@ public class MainFrame extends JFrame implements ActionListener {
                 simulation_configuration_frame.setVisible(true);
                 break;
             case "3":
+                simulation_configuration_frame.setVisible(true);
+                break;
+            case "4":
                 simulation_configuration_frame.setVisible(true);
                 break;
             default:
