@@ -1,5 +1,6 @@
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -9,6 +10,21 @@ import java.util.ArrayList;
 import java.awt.GridLayout;
 
 public class SimulationConfigurationFrame extends JFrame {
+
+    JPanel buttonsPanel = new JPanel();
+    GridLayout contentGridLayout = new GridLayout(0, 1);
+    GridLayout buttonsGridLayout = new GridLayout(0, 2);
+    GridLayout mainGridLayout = new GridLayout(2, 1);
+    JButton acceptButton = new JButton("Aceptar");
+    JButton cancelButton = new JButton("Cancelar");
+
+    String[] food = { "Tren", "Tren Ligero", "Trailer", "Automovil" };
+    JCheckBox[] boxes = new JCheckBox[food.length];
+
+    ArrayList<String> selected_list = new ArrayList<String>();
+    String allowedVeicles = "";
+
+    MainFrame previousFrame;
 
     public SimulationConfigurationFrame() {
         super.setTitle("Seleccionar veiculos");
@@ -41,7 +57,18 @@ public class SimulationConfigurationFrame extends JFrame {
     private void buildButtonsSection() {
         buttonsPanel.setLayout(buttonsGridLayout);
         acceptButton.addActionListener((ActionEvent e) -> {
-            System.out.println(getSelectedNames(boxes));
+            getSelectedNames(boxes);
+            int veicles = Integer.valueOf(allowedVeicles);
+
+            if (selected_list.size() < 1 || selected_list.size() > veicles) {
+                JOptionPane.showMessageDialog(null,
+                        "Elementos seleccionados " + selected_list.size()
+                                + " ,solo es posible seleccionar como minimo 1 y como maximo " + veicles,
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                selected_list.clear();
+                return;
+            }
+            dispose();
         });
         cancelButton.addActionListener((ActionEvent e) -> {
             super.dispose();
@@ -52,23 +79,13 @@ public class SimulationConfigurationFrame extends JFrame {
         super.add(buttonsPanel);
     }
 
-    public Object getSelectedNames(JCheckBox[] boxes) {
-        ArrayList<String> selected_list = new ArrayList<String>();
+    public void getSelectedNames(JCheckBox[] boxes) {
         for (JCheckBox box : boxes)
             if (box.isSelected())
                 selected_list.add(box.getText());
-
-        return selected_list;
     }
 
-    JPanel buttonsPanel = new JPanel();
-    GridLayout contentGridLayout = new GridLayout(0, 1);
-    GridLayout buttonsGridLayout = new GridLayout(0, 2);
-    GridLayout mainGridLayout = new GridLayout(2, 1);
-
-    JButton acceptButton = new JButton("Aceptar");
-    JButton cancelButton = new JButton("Cancelar");
-
-    String[] food = { "Tren", "Tren Ligero", "Trailer", "Automovil" };
-    JCheckBox[] boxes = new JCheckBox[food.length];
+    public void allowedVeicles(String option) {
+        this.allowedVeicles = option;
+    }
 }

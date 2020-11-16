@@ -72,16 +72,18 @@ public class MainFrame extends JFrame implements ActionListener {
             // case statements
             // values must be of same type of expression
             case "2":
+                simulation_configuration_frame.allowedVeicles(veicles_number);
                 simulation_configuration_frame.setVisible(true);
                 break;
             case "3":
+                simulation_configuration_frame.allowedVeicles(veicles_number);
                 simulation_configuration_frame.setVisible(true);
                 break;
             case "4":
+                simulation_configuration_frame.allowedVeicles(veicles_number);
                 simulation_configuration_frame.setVisible(true);
                 break;
             default:
-                System.out.println(veicles_number.length());
                 JOptionPane.showMessageDialog(null, veicles_number + " no es valido", "Error",
                         JOptionPane.ERROR_MESSAGE);
         }
