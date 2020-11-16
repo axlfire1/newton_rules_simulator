@@ -6,7 +6,6 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -15,7 +14,8 @@ import javax.swing.JOptionPane;
 
 public class MainFrame extends JFrame implements ActionListener {
 
-    // constructor
+    // CONSTRUCTOR
+
     public MainFrame() {
         super.setTitle("Newton Physics Simulator");
         super.setSize(1280, 720);
@@ -67,21 +67,15 @@ public class MainFrame extends JFrame implements ActionListener {
     }
 
     public void lunch_configuration(String veicles_number) {
-
         switch (veicles_number) {
-            // case statements
-            // values must be of same type of expression
             case "2":
-                simulation_configuration_frame.allowedVeicles(veicles_number);
-                simulation_configuration_frame.setVisible(true);
+                simulation_configuration = new SimulationConfigurationFrame(veicles_number);
                 break;
             case "3":
-                simulation_configuration_frame.allowedVeicles(veicles_number);
-                simulation_configuration_frame.setVisible(true);
+                simulation_configuration = new SimulationConfigurationFrame(veicles_number);
                 break;
             case "4":
-                simulation_configuration_frame.allowedVeicles(veicles_number);
-                simulation_configuration_frame.setVisible(true);
+                simulation_configuration = new SimulationConfigurationFrame(veicles_number);
                 break;
             default:
                 JOptionPane.showMessageDialog(null, veicles_number + " no es valido", "Error",
@@ -89,15 +83,17 @@ public class MainFrame extends JFrame implements ActionListener {
         }
     }
 
-    // components
-    JButton button = new JButton("Press");
+    // COMPONENTS
+
     JMenuBar menubar = new JMenuBar();
     JMenu menu = new JMenu("Aplicación");
     JMenu credits_menu = new JMenu("Acerca");
     JMenuItem credits_menu_item = new JMenuItem("Creditos");
     JMenuItem configure_simulation_menu_item = new JMenuItem("Configurar simulación");
     JMenuItem exit_menu_item = new JMenuItem("Salir de la aplicación");
-    // custom clases
+
+    // CUSTOM CLASES
+
     AnimationCanvas animation_canvas = new AnimationCanvas();
-    SimulationConfigurationFrame simulation_configuration_frame = new SimulationConfigurationFrame();
+    SimulationConfigurationFrame simulation_configuration;
 }
