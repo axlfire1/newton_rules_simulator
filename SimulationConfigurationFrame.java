@@ -71,7 +71,7 @@ public class SimulationConfigurationFrame {
         if (selected_list.size() < 1 || selected_list.size() > veicles) {
             JOptionPane.showMessageDialog(null,
                     "Elementos seleccionados " + selected_list.size()
-                            + " ,solo es posible seleccionar como minimo 1 y como maximo " + veicles,
+                            + " ,solo es posible seleccionar como minimo 2 y como maximo " + veicles,
                     "Error", JOptionPane.ERROR_MESSAGE);
             selected_list.clear();
             return;
@@ -88,7 +88,7 @@ public class SimulationConfigurationFrame {
 
     public void saveConfiguration() {
         try {
-            FileWriter fstream = new FileWriter(System.currentTimeMillis() + "config.txt");
+            FileWriter fstream = new FileWriter("config.txt");
             BufferedWriter out = new BufferedWriter(fstream);
             out.write(selected_list.toString());
             out.close();
