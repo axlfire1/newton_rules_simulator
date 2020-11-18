@@ -68,15 +68,15 @@ public class MainFrame extends JFrame implements ActionListener {
     public void lunchConfiguration(String veicles_number) {
         switch (veicles_number) {
             case "2":
-                simulation_configuration = new SimulationConfigurationFrame(veicles_number);
+                simulation_configuration = new SimulationConfigurationDialog(veicles_number);
                 readConfigurationFromFile();
                 break;
             case "3":
-                simulation_configuration = new SimulationConfigurationFrame(veicles_number);
+                simulation_configuration = new SimulationConfigurationDialog(veicles_number);
                 readConfigurationFromFile();
                 break;
             case "4":
-                simulation_configuration = new SimulationConfigurationFrame(veicles_number);
+                simulation_configuration = new SimulationConfigurationDialog(veicles_number);
                 readConfigurationFromFile();
                 break;
             default:
@@ -106,5 +106,5 @@ public class MainFrame extends JFrame implements ActionListener {
     // CUSTOM CLASES
 
     AnimationCanvas animation_canvas = new AnimationCanvas();
-    SimulationConfigurationFrame simulation_configuration;
+    SimulationConfigurationDialog simulation_configuration;
 }

@@ -16,10 +16,10 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.awt.GridLayout;
 
-public class SimulationConfigurationFrame {
+public class SimulationConfigurationDialog {
 
     // CONSTRUCTOR
-    public SimulationConfigurationFrame(String allowedVeicles) {
+    public SimulationConfigurationDialog(String allowedVeicles) {
         this.allowedVeicles = allowedVeicles;
         dialog = new JDialog(frame, "Seleccionar veiculos", true);
         dialog.setLayout(new GridLayout());
