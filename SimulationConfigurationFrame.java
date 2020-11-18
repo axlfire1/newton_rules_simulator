@@ -1,4 +1,8 @@
 
+/**
+ * @author David Sarmiento
+ */
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;

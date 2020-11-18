@@ -1,6 +1,5 @@
 
 /**
- *
  * @author David Sarmiento
  */
 
@@ -17,36 +16,41 @@ public class MainFrame extends JFrame implements ActionListener {
     // CONSTRUCTOR
 
     public MainFrame() {
-        super.setTitle("Newton Physics Simulator");
-        super.setSize(1280, 720);
-        super.setResizable(false);
-        super.setLocationRelativeTo(null);
-        super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        super.add(menubar);
-        super.setJMenuBar(menubar);
-        super.add(animation_canvas);
+        prepareMainWindow();
         animation_canvas.start();
     }
 
     public static void main(String[] args) {
         MainFrame window = new MainFrame();
-        window.build_application();
+        window.build_menus();
+        window.menuActions();
+        window.setVisible(true);
     }
 
-    public void build_application() {
-        build_menus();
-        setVisible(true);
+    // BUILDING GUI
+
+    private void prepareMainWindow() {
+        setTitle("Newton Physics Simulator");
+        setSize(1280, 720);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        add(menubar);
+        setJMenuBar(menubar);
+        add(animation_canvas);
     }
 
     public void build_menus() {
         menubar.add(menu);
         menubar.add(credits_menu);
-
         credits_menu.add(credits_menu_item);
-
         menu.add(configure_simulation_menu_item);
         menu.add(exit_menu_item);
+    }
 
+    // LOGIC
+
+    public void menuActions() {
         credits_menu_item.addActionListener((ActionEvent e) -> {
             JOptionPane.showMessageDialog(null, "Developer, David Sarmiento.");
         });
@@ -54,33 +58,40 @@ public class MainFrame extends JFrame implements ActionListener {
             String veicles_number = JOptionPane.showInputDialog(null,
                     "Ingresa cuantos veiculos vas a simular? \n (permitidos de 2 a 4)", "veiculos a simular",
                     JOptionPane.QUESTION_MESSAGE);
-            lunch_configuration(veicles_number);
+            lunchConfiguration(veicles_number);
         });
         exit_menu_item.addActionListener((ActionEvent e) -> {
             System.exit(0);
         });
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void lunch_configuration(String veicles_number) {
+    public void lunchConfiguration(String veicles_number) {
         switch (veicles_number) {
             case "2":
                 simulation_configuration = new SimulationConfigurationFrame(veicles_number);
+                readConfigurationFromFile();
                 break;
             case "3":
                 simulation_configuration = new SimulationConfigurationFrame(veicles_number);
+                readConfigurationFromFile();
                 break;
             case "4":
                 simulation_configuration = new SimulationConfigurationFrame(veicles_number);
+                readConfigurationFromFile();
                 break;
             default:
                 JOptionPane.showMessageDialog(null, veicles_number + " no es valido", "Error",
                         JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    public void readConfigurationFromFile() {
+        System.out.println("checking configurartion file");
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     // COMPONENTS
