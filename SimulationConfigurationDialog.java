@@ -72,7 +72,7 @@ public class SimulationConfigurationDialog {
     private void evaluateSelection() {
         getSelectedNames(boxes);
         int veicles = Integer.valueOf(allowedVeicles);
-        if (selected_list.size() < 1 || selected_list.size() > veicles) {
+        if (selected_list.size() < 2 || selected_list.size() > veicles) {
             JOptionPane.showMessageDialog(null,
                     "Elementos seleccionados " + selected_list.size()
                             + " ,solo es posible seleccionar como minimo 2 y como maximo " + veicles,
