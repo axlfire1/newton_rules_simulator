@@ -72,8 +72,9 @@ public class MainFrame extends JFrame implements ActionListener {
     }
 
     public void buildPanelControlsContent() {
-        ImageIcon start_bitton_image = new ImageIcon("images/unpressed_start_icon.png");
-        startRace.setIcon(start_bitton_image);
+        // ImageIcon start_bitton_image = new
+        // ImageIcon("images/unpressed_start_icon.png");
+        // startRace.setIcon(start_bitton_image);
         panelControls.add(startRace);
     }
 
@@ -128,7 +129,7 @@ public class MainFrame extends JFrame implements ActionListener {
     JMenuItem exit_menu_item = new JMenuItem("Salir de la aplicación");
     JPanel panelCanvas = new JPanel();
     JPanel panelControls = new JPanel();
-    JButton startRace = new JButton();
+    JButton startRace = new JButton("Inciar");
 
     // CUSTOM CLASES
 

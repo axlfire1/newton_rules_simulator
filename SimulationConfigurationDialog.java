@@ -21,9 +21,9 @@ public class SimulationConfigurationDialog {
     // CONSTRUCTOR
     public SimulationConfigurationDialog(String allowedVeicles) {
         this.allowedVeicles = allowedVeicles;
-        dialog = new JDialog(frame, "Seleccionar veiculos", true);
+        dialog = new JDialog(frame, "Seleccionar vehiculos", true);
         dialog.setLayout(new GridLayout());
-        dialog.setSize(500, 500);
+        dialog.setSize(300, 300);
         dialog.setLocationRelativeTo(null);
         orderLayout();
         addButtonActions();
@@ -111,7 +111,7 @@ public class SimulationConfigurationDialog {
     GridLayout mainGridLayout = new GridLayout(2, 1);
     JButton acceptButton = new JButton("Aceptar");
     JButton cancelButton = new JButton("Cancelar");
-    String[] food = { "Tren", "Tren Ligero", "Trailer", "Automovil" };
+    String[] food = { "Tren", "Tren Mexico Toluca", "Trailer (NOM 012)", "Automovil Familiar" };
     JCheckBox[] boxes = new JCheckBox[food.length];
     ArrayList<String> selected_list = new ArrayList<String>();
     String allowedVeicles = "";
