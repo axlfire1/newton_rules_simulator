@@ -13,10 +13,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.GridBagConstraints;
 
 public class MainFrame extends JFrame implements ActionListener {
     private static final long serialVersionUID = 1L;
@@ -28,7 +26,7 @@ public class MainFrame extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        javax.swing.SwingUtilities.invokeLater(new Runnable() { // important
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 MainFrame window = new MainFrame();
@@ -44,6 +42,7 @@ public class MainFrame extends JFrame implements ActionListener {
     // BUILDING GUI
 
     public void prepareMainWindow() {
+        setLayout(null);
         setTitle("Newton Physics Simulator");
         setDefaultLookAndFeelDecorated(true);
         setSize(1280, 720);
@@ -55,15 +54,13 @@ public class MainFrame extends JFrame implements ActionListener {
     }
 
     public void buildLayouts() {
-        setLayout(new GridLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
         Border eBorder = BorderFactory.createEtchedBorder();
-
-        panelCanvas.setBorder(BorderFactory.createTitledBorder(eBorder, "Simulacion"));
+        panelCanvas.setBounds(10, 10, 1245, 520);
+        panelControls.setBounds(10, 530, 1245, 120);
+        panelCanvas.setBorder(BorderFactory.createTitledBorder(eBorder, "Pantalla de simulacion"));
         panelControls.setBorder(BorderFactory.createTitledBorder(eBorder, "Controles"));
-
-        add(panelCanvas, gbc);
-        add(panelControls, gbc);
+        add(panelControls);
+        add(panelCanvas);
     }
 
     public void build_menus() {
@@ -84,11 +81,12 @@ public class MainFrame extends JFrame implements ActionListener {
 
     public void menuActions() {
         credits_menu_item.addActionListener((ActionEvent e) -> {
-            JOptionPane.showMessageDialog(null, "Developer, David Sarmiento.");
+            JOptionPane.showMessageDialog(null,
+                    "Clustec de Investigacion Ferroviaria: \n Dr. Ismael Cortez. \n MC. David Sarmiento. \n Lic. Luis Miguel Carbajal.");
         });
         configure_simulation_menu_item.addActionListener((ActionEvent e) -> {
             String veicles_number = JOptionPane.showInputDialog(null,
-                    "Ingresa cuantos veiculos vas a simular? \n (permitidos de 2 a 4)", "veiculos a simular",
+                    "Ingresa cuantos vehiculos vas a simular? \n (permitidos de 2 a 4)", "vehiculos a simular",
                     JOptionPane.QUESTION_MESSAGE);
             if (veicles_number != null) {
                 lunchConfiguration(veicles_number);
@@ -131,6 +129,7 @@ public class MainFrame extends JFrame implements ActionListener {
     JPanel panelCanvas = new JPanel();
     JPanel panelControls = new JPanel();
     JButton startRace = new JButton();
+
     // CUSTOM CLASES
 
     SimulationConfigurationDialog simulation_configuration;
