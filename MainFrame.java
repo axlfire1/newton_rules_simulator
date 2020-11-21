@@ -22,26 +22,6 @@ public class MainFrame extends JFrame implements ActionListener {
     // CONSTRUCTOR
 
     public MainFrame() {
-        prepareMainWindow();
-    }
-
-    public static void main(String[] args) {
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                MainFrame window = new MainFrame();
-                window.build_menus();
-                window.buildLayouts();
-                window.menuActions();
-                window.buildPanelControlsContent();
-                window.setVisible(true);
-            }
-        });
-    }
-
-    // BUILDING GUI
-
-    public void prepareMainWindow() {
         setLayout(null);
         setTitle("Newton Physics Simulator");
         setDefaultLookAndFeelDecorated(true);
@@ -53,10 +33,27 @@ public class MainFrame extends JFrame implements ActionListener {
         setJMenuBar(menubar);
     }
 
+    public static void main(String[] args) {
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                MainFrame window = new MainFrame();
+                window.build_menus();
+                window.buildLayouts();
+                window.menuActions();
+                window.controlActions();
+                window.buildPanelControlsContent();
+                window.setVisible(true);
+            }
+        });
+    }
+
+    // BUILDING GUI
+
     public void buildLayouts() {
         Border eBorder = BorderFactory.createEtchedBorder();
-        panelCanvas.setBounds(10, 10, 1245, 520);
-        panelControls.setBounds(10, 530, 1245, 120);
+        panelControls.setBounds(10, 10, 1245, 70);
+        panelCanvas.setBounds(10, 80, 1245, 570);
         panelCanvas.setBorder(BorderFactory.createTitledBorder(eBorder, "Pantalla de simulacion"));
         panelControls.setBorder(BorderFactory.createTitledBorder(eBorder, "Controles"));
         add(panelControls);
@@ -72,10 +69,9 @@ public class MainFrame extends JFrame implements ActionListener {
     }
 
     public void buildPanelControlsContent() {
-        // ImageIcon start_bitton_image = new
-        // ImageIcon("images/unpressed_start_icon.png");
-        // startRace.setIcon(start_bitton_image);
-        panelControls.add(startRace);
+        ImageIcon start_bitton_image = new ImageIcon("images/unpressed_start_icon2.png");
+        buttonStartRace.setIcon(start_bitton_image);
+        panelControls.add(buttonStartRace);
     }
 
     // LOGIC
@@ -98,16 +94,25 @@ public class MainFrame extends JFrame implements ActionListener {
         });
     }
 
+    public void controlActions() {
+        buttonStartRace.addActionListener((ActionEvent e) -> {
+            // here will be replaced by the functionality of start animation
+        });
+    }
+
     public void lunchConfiguration(String veicles_number) {
         switch (veicles_number) {
             case "2":
                 simulation_configuration = new SimulationConfigurationDialog(veicles_number);
+                fill_canvas();
                 break;
             case "3":
                 simulation_configuration = new SimulationConfigurationDialog(veicles_number);
+                fill_canvas();
                 break;
             case "4":
                 simulation_configuration = new SimulationConfigurationDialog(veicles_number);
+                fill_canvas();
                 break;
             default:
                 JOptionPane.showMessageDialog(null, veicles_number + " no es valido", "Error",
@@ -117,6 +122,11 @@ public class MainFrame extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void fill_canvas() {
+        animationCanvas.readConfigurationFromFile();
+        panelCanvas.add(animationCanvas);
     }
 
     // COMPONENTS
@@ -129,9 +139,10 @@ public class MainFrame extends JFrame implements ActionListener {
     JMenuItem exit_menu_item = new JMenuItem("Salir de la aplicación");
     JPanel panelCanvas = new JPanel();
     JPanel panelControls = new JPanel();
-    JButton startRace = new JButton("Inciar");
+    JButton buttonStartRace = new JButton("Inciar simulación");
 
     // CUSTOM CLASES
 
     SimulationConfigurationDialog simulation_configuration;
+    AnimationCanvas animationCanvas = new AnimationCanvas();
 }
