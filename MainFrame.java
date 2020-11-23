@@ -110,8 +110,10 @@ public class MainFrame extends JFrame implements ActionListener {
     }
 
     public void controlActions() {
+        buttonStartRace.setEnabled(false);
+
         buttonStartRace.addActionListener((ActionEvent e) -> {
-            animationCanvas.updateGraphics(100, 100);
+            animationCanvas.updateGraphics(readConfiguration());
             repaint();
         });
     }
@@ -120,15 +122,18 @@ public class MainFrame extends JFrame implements ActionListener {
         switch (veicles_number) {
             case "2":
                 new SimulationConfigurationDialog(veicles_number);
-                fill_canvas();
+                buttonStartRace.setEnabled(true);
+                fillCanvas();
                 break;
             case "3":
                 new SimulationConfigurationDialog(veicles_number);
-                fill_canvas();
+                buttonStartRace.setEnabled(true);
+                fillCanvas();
                 break;
             case "4":
                 new SimulationConfigurationDialog(veicles_number);
-                fill_canvas();
+                buttonStartRace.setEnabled(true);
+                fillCanvas();
                 break;
             default:
                 JOptionPane.showMessageDialog(null, veicles_number + " no es valido", "Error",
@@ -140,8 +145,14 @@ public class MainFrame extends JFrame implements ActionListener {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void fill_canvas() {
+    public void fillCanvas() {
         animationCanvas.initialValues();
         repaint();
+    }
+
+    public String[] readConfiguration() {
+        String[] configurationElements;
+        configurationElements = new ConfigurationFile().readElements();
+        return configurationElements;
     }
 }
