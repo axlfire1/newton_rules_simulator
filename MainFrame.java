@@ -119,25 +119,12 @@ public class MainFrame extends JFrame implements ActionListener {
     }
 
     public void lunchConfiguration(String veicles_number) {
-        switch (veicles_number) {
-            case "2":
-                new SimulationConfigurationDialog(veicles_number);
-                buttonStartRace.setEnabled(true);
-                fillCanvas();
-                break;
-            case "3":
-                new SimulationConfigurationDialog(veicles_number);
-                buttonStartRace.setEnabled(true);
-                fillCanvas();
-                break;
-            case "4":
-                new SimulationConfigurationDialog(veicles_number);
-                buttonStartRace.setEnabled(true);
-                fillCanvas();
-                break;
-            default:
-                JOptionPane.showMessageDialog(null, veicles_number + " no es valido", "Error",
-                        JOptionPane.ERROR_MESSAGE);
+        if (veicles_number.equals("2") || veicles_number.equals("3") || veicles_number.equals("4")) {
+            new SimulationConfigurationDialog(veicles_number);
+            buttonStartRace.setEnabled(true);
+            fillCanvas();
+        } else {
+            JOptionPane.showMessageDialog(null, veicles_number + " no es valido", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
