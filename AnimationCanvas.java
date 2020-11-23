@@ -3,51 +3,36 @@
  * @author axl
  */
 
-import java.io.FileReader;
-import javax.swing.JOptionPane;
-import java.io.BufferedReader;
-import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
-public class AnimationCanvas extends Canvas {
+public class AnimationCanvas extends java.awt.Canvas {
 
     private static final long serialVersionUID = 1L;
-    BufferedReader objReader;
-    String strCurrentLine, strNoLeftbrackets, strNoRightBrackets;
-    String[] strFinal, configurationString;
+    ConfigurationFile configurationFile;
+    String[] configurationElements;
+    Graphics2D drawImage;
 
     public AnimationCanvas() {
-        readConfigurationFromFile();
+        configurationElements = new ConfigurationFile().readElements();
         setBounds(10, 30, 1223, 515);
-        setBackground(Color.GRAY);
+        setBackground(Color.WHITE);
     }
-
-    // METHODS
 
     public void paint(Graphics g) {
-        g.drawString(readConfigurationFromFile()[1], 300, 300);
+        drawImage = (Graphics2D) g;
     }
 
-    public void paintConfigurationElements(Graphics g) {
-        g.setColor(Color.red);
-        g.fillOval(75, 75, 150, 75);
+    public void initialValues() {
+        System.out.println(configurationElements[0]);
+        drawImage.drawString(configurationElements[0], 300, 300);
+        repaint();
     }
 
-    // READ FILE METHODS
-
-    public String[] readConfigurationFromFile() {
-
-        try {
-            objReader = new BufferedReader(new FileReader("resources/config.txt"));
-            strCurrentLine = objReader.readLine();
-            strNoLeftbrackets = strCurrentLine.replace("[", "");
-            strNoRightBrackets = strNoLeftbrackets.replace("]", "");
-            strFinal = strNoRightBrackets.split(",");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
-        return strFinal;
+    public void updateGraphics(int height, int width) {
+        System.out.println(configurationElements[1]);
+        drawImage.drawString(configurationElements[1], 300, 300);
+        repaint();
     }
 }

@@ -31,7 +31,7 @@ public class MainFrame extends JFrame implements ActionListener {
     JButton buttonStartRace = new JButton("Inciar simulación");
     // CUSTOM CLASES
     SimulationConfigurationDialog simulation_configuration;
-    AnimationCanvas animationCanvas;
+    AnimationCanvas animationCanvas = new AnimationCanvas();
 
     // CONSTRUCTOR
 
@@ -85,6 +85,7 @@ public class MainFrame extends JFrame implements ActionListener {
     public void buildPanelControlsContent() {
         ImageIcon start_bitton_image = new ImageIcon("resources/images/unpressed_start_icon2.png");
         buttonStartRace.setIcon(start_bitton_image);
+        panelCanvas.add(animationCanvas);
         panelControls.add(buttonStartRace);
     }
 
@@ -110,7 +111,8 @@ public class MainFrame extends JFrame implements ActionListener {
 
     public void controlActions() {
         buttonStartRace.addActionListener((ActionEvent e) -> {
-            // here will be replaced by the functionality of start animation
+            animationCanvas.updateGraphics(100, 100);
+            repaint();
         });
     }
 
@@ -139,7 +141,7 @@ public class MainFrame extends JFrame implements ActionListener {
     }
 
     public void fill_canvas() {
-        animationCanvas = new AnimationCanvas();
-        // add(animationCanvas.initialCanvas());
+        animationCanvas.initialValues();
+        repaint();
     }
 }
