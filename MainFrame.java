@@ -69,7 +69,7 @@ public class MainFrame extends JFrame implements ActionListener {
     }
 
     public void buildPanelControlsContent() {
-        ImageIcon start_bitton_image = new ImageIcon("images/unpressed_start_icon2.png");
+        ImageIcon start_bitton_image = new ImageIcon("resources/images/unpressed_start_icon2.png");
         buttonStartRace.setIcon(start_bitton_image);
         panelControls.add(buttonStartRace);
     }

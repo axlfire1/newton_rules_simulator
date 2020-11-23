@@ -18,6 +18,21 @@ import java.awt.GridLayout;
 
 public class SimulationConfigurationDialog {
 
+    // COMPONENTS
+    private static JDialog dialog;
+    JFrame frame = new JFrame();
+    JPanel buttonsPanel = new JPanel();
+    GridLayout contentGridLayout = new GridLayout(0, 1);
+    GridLayout buttonsGridLayout = new GridLayout(0, 2);
+    GridLayout mainGridLayout = new GridLayout(2, 1);
+    JButton acceptButton = new JButton("Aceptar");
+    JButton cancelButton = new JButton("Cancelar");
+    String[] food = { "Tren", "Tren Mexico Toluca", "Trailer (NOM 012)", "Automovil Familiar" };
+    JCheckBox[] boxes = new JCheckBox[food.length];
+    ArrayList<String> selected_list = new ArrayList<String>();
+    String allowedVeicles = "";
+    MainFrame previousFrame;
+
     // CONSTRUCTOR
     public SimulationConfigurationDialog(String allowedVeicles) {
         this.allowedVeicles = allowedVeicles;
@@ -31,7 +46,6 @@ public class SimulationConfigurationDialog {
     }
 
     // BUILDING GUI
-
     private void orderLayout() {
         mainGridLayout.setHgap(50);
         mainGridLayout.setVgap(50);
@@ -47,8 +61,8 @@ public class SimulationConfigurationDialog {
             dialog.add(boxes[i]);
         }
 
-        boxes[0].setIcon(new ImageIcon("images/train.png"));
-        boxes[0].setSelectedIcon(new ImageIcon("images/train_selected.png"));
+        boxes[0].setIcon(new ImageIcon("resources/images/train.png"));
+        boxes[0].setSelectedIcon(new ImageIcon("resources/images/train_selected.png"));
     }
 
     private void buildButtonsSection() {
@@ -59,7 +73,6 @@ public class SimulationConfigurationDialog {
     }
 
     // LOGIC
-
     public void addButtonActions() {
         acceptButton.addActionListener((ActionEvent e) -> {
             evaluateSelection();
@@ -92,7 +105,7 @@ public class SimulationConfigurationDialog {
 
     public void saveConfiguration() {
         try {
-            FileWriter fstream = new FileWriter("config.txt");
+            FileWriter fstream = new FileWriter("resources/config.txt");
             BufferedWriter out = new BufferedWriter(fstream);
             out.write(selected_list.toString());
             out.close();
@@ -100,20 +113,4 @@ public class SimulationConfigurationDialog {
             System.err.println("Error: " + e.getMessage());
         }
     }
-
-    // COMPONENTS
-
-    private static JDialog dialog;
-    JFrame frame = new JFrame();
-    JPanel buttonsPanel = new JPanel();
-    GridLayout contentGridLayout = new GridLayout(0, 1);
-    GridLayout buttonsGridLayout = new GridLayout(0, 2);
-    GridLayout mainGridLayout = new GridLayout(2, 1);
-    JButton acceptButton = new JButton("Aceptar");
-    JButton cancelButton = new JButton("Cancelar");
-    String[] food = { "Tren", "Tren Mexico Toluca", "Trailer (NOM 012)", "Automovil Familiar" };
-    JCheckBox[] boxes = new JCheckBox[food.length];
-    ArrayList<String> selected_list = new ArrayList<String>();
-    String allowedVeicles = "";
-    MainFrame previousFrame;
 }
