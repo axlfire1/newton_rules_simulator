@@ -11,8 +11,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionEvent;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.util.ArrayList;
 import java.awt.GridLayout;
 
@@ -93,7 +91,8 @@ public class SimulationConfigurationDialog {
             selected_list.clear();
             return;
         }
-        saveConfiguration();
+        ConfigurationFile configurationFile = new ConfigurationFile();
+        configurationFile.saveConfiguration(selected_list);
         dialog.dispose();
     }
 
@@ -101,16 +100,5 @@ public class SimulationConfigurationDialog {
         for (JCheckBox box : boxes)
             if (box.isSelected())
                 selected_list.add(box.getText());
-    }
-
-    public void saveConfiguration() {
-        try {
-            FileWriter fstream = new FileWriter("resources/config.txt");
-            BufferedWriter out = new BufferedWriter(fstream);
-            out.write(selected_list.toString());
-            out.close();
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-        }
     }
 }

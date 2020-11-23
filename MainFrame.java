@@ -17,7 +17,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainFrame extends JFrame implements ActionListener {
+
     private static final long serialVersionUID = 1L;
+    // UI COMPONENTS
+    JMenuBar menubar = new JMenuBar();
+    JMenu menu = new JMenu("Aplicación");
+    JMenu credits_menu = new JMenu("Acerca");
+    JMenuItem credits_menu_item = new JMenuItem("Creditos");
+    JMenuItem configure_simulation_menu_item = new JMenuItem("Configurar simulación");
+    JMenuItem exit_menu_item = new JMenuItem("Salir de la aplicación");
+    JPanel panelCanvas = new JPanel();
+    JPanel panelControls = new JPanel();
+    JButton buttonStartRace = new JButton("Inciar simulación");
+    // CUSTOM CLASES
+    SimulationConfigurationDialog simulation_configuration;
+    AnimationCanvas animationCanvas;
 
     // CONSTRUCTOR
 
@@ -103,15 +117,15 @@ public class MainFrame extends JFrame implements ActionListener {
     public void lunchConfiguration(String veicles_number) {
         switch (veicles_number) {
             case "2":
-                simulation_configuration = new SimulationConfigurationDialog(veicles_number);
+                new SimulationConfigurationDialog(veicles_number);
                 fill_canvas();
                 break;
             case "3":
-                simulation_configuration = new SimulationConfigurationDialog(veicles_number);
+                new SimulationConfigurationDialog(veicles_number);
                 fill_canvas();
                 break;
             case "4":
-                simulation_configuration = new SimulationConfigurationDialog(veicles_number);
+                new SimulationConfigurationDialog(veicles_number);
                 fill_canvas();
                 break;
             default:
@@ -125,24 +139,7 @@ public class MainFrame extends JFrame implements ActionListener {
     }
 
     public void fill_canvas() {
-        animationCanvas.readConfigurationFromFile();
-        panelCanvas.add(animationCanvas);
+        animationCanvas = new AnimationCanvas();
+        // add(animationCanvas.initialCanvas());
     }
-
-    // COMPONENTS
-
-    JMenuBar menubar = new JMenuBar();
-    JMenu menu = new JMenu("Aplicación");
-    JMenu credits_menu = new JMenu("Acerca");
-    JMenuItem credits_menu_item = new JMenuItem("Creditos");
-    JMenuItem configure_simulation_menu_item = new JMenuItem("Configurar simulación");
-    JMenuItem exit_menu_item = new JMenuItem("Salir de la aplicación");
-    JPanel panelCanvas = new JPanel();
-    JPanel panelControls = new JPanel();
-    JButton buttonStartRace = new JButton("Inciar simulación");
-
-    // CUSTOM CLASES
-
-    SimulationConfigurationDialog simulation_configuration;
-    AnimationCanvas animationCanvas = new AnimationCanvas();
 }
