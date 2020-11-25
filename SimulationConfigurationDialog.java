@@ -60,9 +60,9 @@ public class SimulationConfigurationDialog {
         }
 
         boxes[0].setIcon(new ImageIcon("resources/images/train.png"));
-        boxes[1].setIcon(new ImageIcon("resources/images/interurbano.jpeg"));
-        boxes[2].setIcon(new ImageIcon("resources/images/trailer.jpeg"));
-        boxes[3].setIcon(new ImageIcon("resources/images/auto.jpeg"));
+        boxes[1].setIcon(new ImageIcon("resources/images/interurbano.png"));
+        boxes[2].setIcon(new ImageIcon("resources/images/trailer.png"));
+        boxes[3].setIcon(new ImageIcon("resources/images/auto.png"));
 
         boxes[0].setSelectedIcon(new ImageIcon("resources/images/train_selected.png"));
     }

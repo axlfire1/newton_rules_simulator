@@ -117,7 +117,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
     public void lunchConfiguration(String veicles_number) {
         if (veicles_number.equals("2") || veicles_number.equals("3") || veicles_number.equals("4")) {
-            SimulationConfigurationDialog returnValue = new SimulationConfigurationDialog(veicles_number);
+            new SimulationConfigurationDialog(veicles_number);
             buttonStartRace.setEnabled(true);
             animationCanvas.initialValues(readConfiguration());
         } else {
