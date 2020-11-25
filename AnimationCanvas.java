@@ -22,12 +22,12 @@ public class AnimationCanvas extends Canvas {
         temp = drawImage.create();
     }
 
-    public void initialValues() {
-        temp.setColor(java.awt.Color.WHITE);
-    }
-
-    public void updateGraphics(String[] configurationElements) {
+    public void initialValues(String[] configurationElements) {
         temp.drawString(configurationElements[0], 300, 300);
         temp.drawString(configurationElements[1], 300, 350);
+    }
+
+    public void updateGraphics() {
+        temp.drawString("CHANGED VALUES", 350, 350);
     }
 }

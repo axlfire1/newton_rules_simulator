@@ -23,14 +23,13 @@ public class MainFrame extends JFrame implements ActionListener {
     JMenuBar menubar = new JMenuBar();
     JMenu menu = new JMenu("Aplicación");
     JMenu credits_menu = new JMenu("Acerca");
-    JMenuItem credits_menu_item = new JMenuItem("Creditos");
-    JMenuItem configure_simulation_menu_item = new JMenuItem("Configurar simulación");
-    JMenuItem exit_menu_item = new JMenuItem("Salir de la aplicación");
+    JMenuItem creditsMenuItem = new JMenuItem("Creditos");
+    JMenuItem configureSimulationMenuItem = new JMenuItem("Configurar simulación");
+    JMenuItem exitMenuItem = new JMenuItem("Salir de la aplicación");
     JPanel panelCanvas = new JPanel();
     JPanel panelControls = new JPanel();
     JButton buttonStartRace = new JButton("Inciar simulación");
     // CUSTOM CLASES
-    SimulationConfigurationDialog simulation_configuration;
     AnimationCanvas animationCanvas = new AnimationCanvas();
 
     // CONSTRUCTOR
@@ -77,9 +76,9 @@ public class MainFrame extends JFrame implements ActionListener {
     public void build_menus() {
         menubar.add(menu);
         menubar.add(credits_menu);
-        credits_menu.add(credits_menu_item);
-        menu.add(configure_simulation_menu_item);
-        menu.add(exit_menu_item);
+        credits_menu.add(creditsMenuItem);
+        menu.add(configureSimulationMenuItem);
+        menu.add(exitMenuItem);
     }
 
     public void buildPanelControlsContent() {
@@ -92,11 +91,11 @@ public class MainFrame extends JFrame implements ActionListener {
     // LOGIC
 
     public void menuActions() {
-        credits_menu_item.addActionListener((ActionEvent e) -> {
+        creditsMenuItem.addActionListener((ActionEvent e) -> {
             JOptionPane.showMessageDialog(null,
                     "Clustec de Investigacion Ferroviaria: \n Dr. Ismael Cortez. \n MC. David Sarmiento. \n Lic. Luis Miguel Carbajal.");
         });
-        configure_simulation_menu_item.addActionListener((ActionEvent e) -> {
+        configureSimulationMenuItem.addActionListener((ActionEvent e) -> {
             String veicles_number = JOptionPane.showInputDialog(null,
                     "Ingresa cuantos vehiculos vas a simular? \n (permitidos de 2 a 4)", "vehiculos a simular",
                     JOptionPane.QUESTION_MESSAGE);
@@ -104,25 +103,23 @@ public class MainFrame extends JFrame implements ActionListener {
                 lunchConfiguration(veicles_number);
             }
         });
-        exit_menu_item.addActionListener((ActionEvent e) -> {
+        exitMenuItem.addActionListener((ActionEvent e) -> {
             System.exit(0);
         });
     }
 
     public void controlActions() {
         buttonStartRace.setEnabled(false);
-
         buttonStartRace.addActionListener((ActionEvent e) -> {
-            animationCanvas.updateGraphics(readConfiguration());
-            repaint();
+            animationCanvas.updateGraphics();
         });
     }
 
     public void lunchConfiguration(String veicles_number) {
         if (veicles_number.equals("2") || veicles_number.equals("3") || veicles_number.equals("4")) {
-            new SimulationConfigurationDialog(veicles_number);
+            SimulationConfigurationDialog returnValue = new SimulationConfigurationDialog(veicles_number);
             buttonStartRace.setEnabled(true);
-            fillCanvas();
+            animationCanvas.initialValues(readConfiguration());
         } else {
             JOptionPane.showMessageDialog(null, veicles_number + " no es valido", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -130,11 +127,6 @@ public class MainFrame extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void fillCanvas() {
-        animationCanvas.initialValues();
-        repaint();
     }
 
     public String[] readConfiguration() {
