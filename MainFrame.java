@@ -22,7 +22,7 @@ public class MainFrame extends JFrame implements ActionListener {
     // UI COMPONENTS
     JMenuBar menubar = new JMenuBar();
     JMenu menu = new JMenu("Aplicación");
-    JMenu credits_menu = new JMenu("Acerca");
+    JMenu creditsMenu = new JMenu("Acerca");
     JMenuItem creditsMenuItem = new JMenuItem("Creditos");
     JMenuItem configureSimulationMenuItem = new JMenuItem("Configurar simulación");
     JMenuItem exitMenuItem = new JMenuItem("Salir de la aplicación");
@@ -75,15 +75,15 @@ public class MainFrame extends JFrame implements ActionListener {
 
     public void build_menus() {
         menubar.add(menu);
-        menubar.add(credits_menu);
-        credits_menu.add(creditsMenuItem);
+        menubar.add(creditsMenu);
+        creditsMenu.add(creditsMenuItem);
         menu.add(configureSimulationMenuItem);
         menu.add(exitMenuItem);
     }
 
     public void buildPanelControlsContent() {
-        ImageIcon start_bitton_image = new ImageIcon("resources/images/unpressed_start_icon2.png");
-        buttonStartRace.setIcon(start_bitton_image);
+        ImageIcon startButton_image = new ImageIcon("resources/images/unpressed_start_icon2.png");
+        buttonStartRace.setIcon(startButton_image);
         panelCanvas.add(animationCanvas);
         panelControls.add(buttonStartRace);
     }
@@ -96,11 +96,11 @@ public class MainFrame extends JFrame implements ActionListener {
                     "Clustec de Investigacion Ferroviaria: \n Dr. Ismael Cortez. \n MC. David Sarmiento. \n Lic. Luis Miguel Carbajal.");
         });
         configureSimulationMenuItem.addActionListener((ActionEvent e) -> {
-            String veicles_number = JOptionPane.showInputDialog(null,
+            String veiclesNumber = JOptionPane.showInputDialog(null,
                     "Ingresa cuantos vehiculos vas a simular? \n (permitidos de 2 a 4)", "vehiculos a simular",
                     JOptionPane.QUESTION_MESSAGE);
-            if (veicles_number != null) {
-                lunchConfiguration(veicles_number);
+            if (veiclesNumber != null) {
+                lunchConfiguration(veiclesNumber);
             }
         });
         exitMenuItem.addActionListener((ActionEvent e) -> {
@@ -115,13 +115,13 @@ public class MainFrame extends JFrame implements ActionListener {
         });
     }
 
-    public void lunchConfiguration(String veicles_number) {
-        if (veicles_number.equals("2") || veicles_number.equals("3") || veicles_number.equals("4")) {
-            new SimulationConfigurationDialog(veicles_number);
+    public void lunchConfiguration(String veiclesNumber) {
+        if (veiclesNumber.equals("2") || veiclesNumber.equals("3") || veiclesNumber.equals("4")) {
+            new SimulationConfigurationDialog(veiclesNumber);
             buttonStartRace.setEnabled(true);
             animationCanvas.initialValues(readConfiguration());
         } else {
-            JOptionPane.showMessageDialog(null, veicles_number + " no es valido", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, veiclesNumber + " no es valido", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
