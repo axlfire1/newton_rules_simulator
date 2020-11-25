@@ -41,7 +41,7 @@ public class MainFrame extends JFrame implements ActionListener {
         setSize(1280, 720);
         setResizable(false);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(3);
         add(menubar);
         setJMenuBar(menubar);
     }
