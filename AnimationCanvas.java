@@ -10,8 +10,8 @@ import java.awt.Canvas;
 public class AnimationCanvas extends Canvas {
 
     private static final long serialVersionUID = 1L;
-    Graphics2D drawImage;
-    Graphics temp;
+    private Graphics2D drawImage;
+    private Graphics pen;
 
     public AnimationCanvas() {
         setBounds(10, 30, 1223, 515);
@@ -19,15 +19,15 @@ public class AnimationCanvas extends Canvas {
 
     public void paint(Graphics g) {
         drawImage = (Graphics2D) g;
-        temp = drawImage.create();
+        pen = drawImage.create();
     }
 
     public void initialValues(String[] configurationElements) {
-        temp.drawString(configurationElements[0], 300, 300);
-        temp.drawString(configurationElements[1], 300, 350);
+        pen.drawString(configurationElements[0], 300, 300);
+        pen.drawString(configurationElements[1], 300, 350);
     }
 
     public void updateGraphics() {
-        temp.drawString("CHANGED VALUES", 350, 350);
+        pen.drawString("CHANGED VALUES", 350, 350);
     }
 }
