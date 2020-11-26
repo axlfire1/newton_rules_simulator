@@ -52,7 +52,7 @@ public class MainFrame extends JFrame implements ActionListener {
             @Override
             public void run() {
                 MainFrame window = new MainFrame();
-                window.build_menus();
+                window.buildMenus();
                 window.buildLayouts();
                 window.menuActions();
                 window.controlActions();
@@ -74,7 +74,7 @@ public class MainFrame extends JFrame implements ActionListener {
         add(panelCanvas);
     }
 
-    public void build_menus() {
+    public void buildMenus() {
         menubar.add(menu);
         menubar.add(creditsMenu);
         creditsMenu.add(creditsMenuItem);
