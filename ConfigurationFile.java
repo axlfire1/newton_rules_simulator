@@ -17,7 +17,7 @@ public class ConfigurationFile {
   FileReader fr;
   FileWriter fw;
   String strCurrentLine, strNoLeftbrackets, strNoRightBrackets;
-  String[] strFinal = null;
+  String[] strFinal;
 
   public void saveConfiguration(ArrayList<String> selected_list) {
     try {

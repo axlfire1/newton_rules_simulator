@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 public class MainFrame extends JFrame implements ActionListener {
 
@@ -82,8 +83,8 @@ public class MainFrame extends JFrame implements ActionListener {
     }
 
     public void buildPanelControlsContent() {
-        ImageIcon startButton_image = new ImageIcon("resources/images/unpressed_start_icon2.png");
-        buttonStartRace.setIcon(startButton_image);
+        ImageIcon startButtonImage = new ImageIcon("resources/images/unpressed_start_icon2.png");
+        buttonStartRace.setIcon(startButtonImage);
         panelCanvas.add(animationCanvas);
         panelControls.add(buttonStartRace);
     }
@@ -119,8 +120,10 @@ public class MainFrame extends JFrame implements ActionListener {
         if (veiclesNumber.equals("2") || veiclesNumber.equals("3") || veiclesNumber.equals("4")) {
             new SimulationConfigurationDialog(veiclesNumber);
             String[] configuration = readConfiguration();
-            buttonStartRace.setEnabled(true);
-            animationCanvas.initialValues(configuration);
+            if (!Arrays.toString(configuration).equals("[nothing]")) {
+                buttonStartRace.setEnabled(true);
+                animationCanvas.initialValues(configuration);
+            }
         } else {
             JOptionPane.showMessageDialog(null, veiclesNumber + " no es valido", "Error", JOptionPane.ERROR_MESSAGE);
         }
