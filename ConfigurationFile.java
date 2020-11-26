@@ -11,33 +11,42 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class ConfigurationFile {
-
+  String FILE = "resources/config.txt";
   BufferedReader objReader;
+  BufferedWriter outWriter;
+  FileReader fr;
+  FileWriter fw;
   String strCurrentLine, strNoLeftbrackets, strNoRightBrackets;
-  String[] strFinal, configurationString;
+  String[] strFinal = null;
 
   public void saveConfiguration(ArrayList<String> selected_list) {
     try {
-      FileWriter fstream = new FileWriter("resources/config.txt");
-      BufferedWriter out = new BufferedWriter(fstream);
-      out.write(selected_list.toString());
-      out.close();
+      fw = new FileWriter(FILE);
+      outWriter = new BufferedWriter(fw);
+      outWriter.write(selected_list.toString());
+      outWriter.close();
     } catch (Exception e) {
-      System.err.println("Error: " + e.getMessage());
+      errorMessage(e);
     }
   }
 
   public String[] readElements() {
     try {
-      objReader = new BufferedReader(new FileReader("resources/config.txt"));
+      fr = new FileReader(FILE);
+      objReader = new BufferedReader(fr);
       strCurrentLine = objReader.readLine();
       strNoLeftbrackets = strCurrentLine.replace("[", "");
       strNoRightBrackets = strNoLeftbrackets.replace("]", "");
       strFinal = strNoRightBrackets.split(",");
     } catch (Exception e) {
       JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+      errorMessage(e);
     }
 
     return strFinal;
+  }
+
+  public void errorMessage(Exception e) {
+    System.err.println("Error: " + e.getMessage());
   }
 }

@@ -118,8 +118,9 @@ public class MainFrame extends JFrame implements ActionListener {
     public void lunchConfiguration(String veiclesNumber) {
         if (veiclesNumber.equals("2") || veiclesNumber.equals("3") || veiclesNumber.equals("4")) {
             new SimulationConfigurationDialog(veiclesNumber);
+            String[] configuration = readConfiguration();
             buttonStartRace.setEnabled(true);
-            animationCanvas.initialValues(readConfiguration());
+            animationCanvas.initialValues(configuration);
         } else {
             JOptionPane.showMessageDialog(null, veiclesNumber + " no es valido", "Error", JOptionPane.ERROR_MESSAGE);
         }

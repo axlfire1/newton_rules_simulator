@@ -17,8 +17,9 @@ import java.awt.GridLayout;
 public class SimulationConfigurationDialog {
 
     // COMPONENTS
-    private static JDialog dialog;
     JFrame frame = new JFrame();
+    JDialog dialog = new JDialog(frame, "Seleccionar vehiculos", true);
+    ConfigurationFile configurationFile = new ConfigurationFile();
     JPanel buttonsPanel = new JPanel();
     GridLayout contentGridLayout = new GridLayout(0, 1);
     GridLayout buttonsGridLayout = new GridLayout(0, 2);
@@ -27,20 +28,22 @@ public class SimulationConfigurationDialog {
     JButton cancelButton = new JButton("Cancelar");
     String[] food = { "Tren", "Tren Mexico Toluca", "Trailer (NOM 012)", "Automovil Familiar" };
     JCheckBox[] boxes = new JCheckBox[food.length];
-    ArrayList<String> selected_list = new ArrayList<String>();
+    ArrayList<String> selectedList = new ArrayList<String>();
     String allowedVeicles = "";
     MainFrame previousFrame;
 
     // CONSTRUCTOR
     public SimulationConfigurationDialog(String allowedVeicles) {
         this.allowedVeicles = allowedVeicles;
-        dialog = new JDialog(frame, "Seleccionar vehiculos", true);
         dialog.setLayout(new GridLayout());
-        dialog.setSize(300, 300);
+        dialog.setSize(480, 470);
         dialog.setLocationRelativeTo(null);
+        dialog.setBackground(java.awt.Color.WHITE);
+        dialog.setResizable(false);
         orderLayout();
         addButtonActions();
         dialog.setVisible(true);
+
     }
 
     // BUILDING GUI
@@ -63,8 +66,11 @@ public class SimulationConfigurationDialog {
         boxes[1].setIcon(new ImageIcon("resources/images/interurbano.png"));
         boxes[2].setIcon(new ImageIcon("resources/images/trailer.png"));
         boxes[3].setIcon(new ImageIcon("resources/images/auto.png"));
-
         boxes[0].setSelectedIcon(new ImageIcon("resources/images/train_selected.png"));
+        boxes[1].setSelectedIcon(new ImageIcon("resources/images/interurbano_selected.png"));
+        boxes[2].setSelectedIcon(new ImageIcon("resources/images/trailer_selected.png"));
+        boxes[3].setSelectedIcon(new ImageIcon("resources/images/auto_selected.png"));
+
     }
 
     private void buildButtonsSection() {
@@ -80,6 +86,8 @@ public class SimulationConfigurationDialog {
             evaluateSelection();
         });
         cancelButton.addActionListener((ActionEvent e) -> {
+            selectedList.add("nothing");
+            configurationFile.saveConfiguration(selectedList);
             dialog.dispose();
         });
     }
@@ -87,22 +95,21 @@ public class SimulationConfigurationDialog {
     private void evaluateSelection() {
         getSelectedNames(boxes);
         int veicles = Integer.valueOf(allowedVeicles);
-        if (selected_list.size() < 2 || selected_list.size() > veicles) {
+        if (selectedList.size() < 2 || selectedList.size() > veicles) {
             JOptionPane.showMessageDialog(null,
-                    "Elementos seleccionados " + selected_list.size()
+                    "Elementos seleccionados " + selectedList.size()
                             + " ,solo es posible seleccionar como minimo 2 y como maximo " + veicles,
                     "Error", JOptionPane.ERROR_MESSAGE);
-            selected_list.clear();
+            selectedList.clear();
             return;
         }
-        ConfigurationFile configurationFile = new ConfigurationFile();
-        configurationFile.saveConfiguration(selected_list);
+        configurationFile.saveConfiguration(selectedList);
         dialog.dispose();
     }
 
     public void getSelectedNames(JCheckBox[] boxes) {
         for (JCheckBox box : boxes)
             if (box.isSelected())
-                selected_list.add(box.getText());
+                selectedList.add(box.getText());
     }
 }
