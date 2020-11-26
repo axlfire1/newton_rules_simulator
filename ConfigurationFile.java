@@ -16,7 +16,7 @@ public class ConfigurationFile {
   BufferedWriter outWriter;
   FileReader fr;
   FileWriter fw;
-  String strCurrentLine, strNoLeftbrackets, strNoRightBrackets;
+  String strCurrentLine, strNoLeftbrackets, strNoRightBrackets, strNoSpaces;
   String[] strFinal;
 
   public void saveConfiguration(ArrayList<String> selected_list) {
@@ -37,7 +37,8 @@ public class ConfigurationFile {
       strCurrentLine = objReader.readLine();
       strNoLeftbrackets = strCurrentLine.replace("[", "");
       strNoRightBrackets = strNoLeftbrackets.replace("]", "");
-      strFinal = strNoRightBrackets.split(",");
+      strNoSpaces = strNoRightBrackets.replace(" ", "");
+      strFinal = strNoSpaces.split(",");
     } catch (Exception e) {
       JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
       errorMessage(e);
