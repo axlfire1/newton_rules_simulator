@@ -9,12 +9,15 @@ import java.awt.Canvas;
 import java.awt.Image;
 import java.awt.Toolkit;
 
-public class AnimationCanvas extends Canvas {
+public class AnimationCanvas extends Canvas implements Runnable {
 
     private static final long serialVersionUID = 1L;
+    String[] elements;
     Graphics2D drawImage;
     Graphics pen;
     Image imageTren, imageSuburbano, imageTrailer, imageAutomovil;
+    Thread thread = new Thread(this);
+    int j;
 
     public AnimationCanvas() {
         setBounds(10, 30, 1223, 515);
@@ -28,7 +31,22 @@ public class AnimationCanvas extends Canvas {
 
     public void initialValues(String[] configurationElements) {
         assignImagesFromConfiguration(configurationElements);
+        drawComponentsWhileAnimation();
+        draw_initial_selected_elements();
+    }
 
+    public void drawComponentsWhileAnimation() {
+        pen.drawString("META", 1150, 250);
+        pen.drawLine(1100, 20, 1100, 500);
+        pen.drawLine(1101, 20, 1101, 500);
+        pen.drawLine(1102, 20, 1102, 500);
+    }
+
+    public void startAnimation() {
+        thread.start();
+    }
+
+    public void draw_initial_selected_elements() {
         if (imageTren != null) {
             pen.drawImage(imageTren, 20, 150, this);
         }
@@ -43,10 +61,6 @@ public class AnimationCanvas extends Canvas {
         }
     }
 
-    public void updateGraphics() {
-        pen.drawString("CHANGED VALUES", 350, 350);
-    }
-
     public void assignImagesFromConfiguration(String[] configurationElements) {
         for (int i = 0; i < configurationElements.length; i++) {
             System.out.println(configurationElements[i]);
@@ -59,6 +73,35 @@ public class AnimationCanvas extends Canvas {
             } else if (configurationElements[i].equals("AutomovilFamiliar")) {
                 imageAutomovil = Toolkit.getDefaultToolkit().getImage("resources/images/auto.png");
             }
+        }
+    }
+
+    @Override
+    public void run() {
+        repaint();
+        drawComponentsWhileAnimation();
+        try {
+            for (j = 0; j < 1000; j++) {
+                if (imageTren != null) {
+                    pen.drawImage(imageTren, j, 150, this);
+                }
+                if (imageSuburbano != null) {
+                    pen.drawImage(imageSuburbano, j, 250, this);
+                }
+                if (imageTrailer != null) {
+                    pen.drawImage(imageTrailer, j, 350, this);
+                }
+                if (imageAutomovil != null) {
+                    pen.drawImage(imageAutomovil, j, 450, this);
+                }
+                Thread.sleep(20);
+                imageTren = null;
+                imageSuburbano = null;
+                imageTrailer = null;
+                imageAutomovil = null;
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

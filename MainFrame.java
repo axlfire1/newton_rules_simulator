@@ -112,7 +112,8 @@ public class MainFrame extends JFrame implements ActionListener {
     public void controlActions() {
         buttonStartRace.setEnabled(false);
         buttonStartRace.addActionListener((ActionEvent e) -> {
-            animationCanvas.updateGraphics();
+            animationCanvas.startAnimation();
+            buttonStartRace.setEnabled(false);
         });
     }
 
