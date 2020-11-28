@@ -78,9 +78,9 @@ public class AnimationCanvas extends Canvas implements Runnable {
 
     @Override
     public void run() {
-        repaint();
-        drawComponentsWhileAnimation();
         try {
+            repaint();
+            drawComponentsWhileAnimation();
             for (j = 0; j < 1000; j++) {
                 if (imageTren != null) {
                     pen.drawImage(imageTren, j, 150, this);
@@ -95,10 +95,6 @@ public class AnimationCanvas extends Canvas implements Runnable {
                     pen.drawImage(imageAutomovil, j, 450, this);
                 }
                 Thread.sleep(20);
-                imageTren = null;
-                imageSuburbano = null;
-                imageTrailer = null;
-                imageAutomovil = null;
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
