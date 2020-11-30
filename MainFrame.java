@@ -37,7 +37,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
     public MainFrame() {
         setLayout(null);
-        setTitle("Newton Physics Simulator");
+        setTitle("2ª Ley de Newton Aplicado a un Sistema Ferroviario");
         setDefaultLookAndFeelDecorated(true);
         setSize(1280, 720);
         setResizable(false);
