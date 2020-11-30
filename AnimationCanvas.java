@@ -96,6 +96,7 @@ public class AnimationCanvas extends Canvas implements Runnable {
         try {
             for (j = 0; j < 1000; j++) {
                 pen.clearRect(350, 30, 500, 100);
+                pen.clearRect(0, 150, 1098, 450);
                 if (imageTren != null) {
                     pen.setColor(Color.BLUE);
                     pen.drawString("TREN", 350, 20);
