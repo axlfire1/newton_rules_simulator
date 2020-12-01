@@ -38,8 +38,9 @@ public class AnimationCanvas extends Canvas implements Runnable {
     }
 
     public void drawComponentsWhileAnimation() {
-        pen.drawString("META", 1150, 250);
-        pen.drawLine(1100, 20, 1100, 500);
+        pen.drawString("INICIO", 100, 250);
+        pen.drawString("DESTINO", 1150, 250);
+        pen.drawLine(105, 20, 105, 500);
         pen.drawLine(1101, 20, 1101, 500);
         pen.drawLine(1102, 20, 1102, 500);
     }

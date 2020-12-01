@@ -36,7 +36,7 @@ public class SimulationConfigurationDialog {
     public SimulationConfigurationDialog(String allowedVeicles) {
         this.allowedVeicles = allowedVeicles;
         dialog.setLayout(new GridLayout());
-        dialog.setSize(480, 470);
+        dialog.setSize(320, 430);
         dialog.setLocationRelativeTo(null);
         dialog.setBackground(java.awt.Color.WHITE);
         dialog.setResizable(false);
