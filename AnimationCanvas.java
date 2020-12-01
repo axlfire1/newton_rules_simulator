@@ -38,11 +38,9 @@ public class AnimationCanvas extends Canvas implements Runnable {
     }
 
     public void drawComponentsWhileAnimation() {
-        pen.drawString("INICIO", 100, 250);
-        pen.drawString("DESTINO", 1150, 250);
-        pen.drawLine(105, 20, 105, 500);
-        pen.drawLine(1101, 20, 1101, 500);
-        pen.drawLine(1102, 20, 1102, 500);
+        pen.drawLine(100, 150, 100, 500);
+        pen.drawLine(1100, 150, 1100, 500);
+        pen.drawString("DESTINO", 1110, 325);
     }
 
     public void drawScoreBoard() {
@@ -64,16 +62,16 @@ public class AnimationCanvas extends Canvas implements Runnable {
 
     public void draw_initial_selected_elements() {
         if (imageTren != null) {
-            pen.drawImage(imageTren, 20, 150, this);
+            pen.drawImage(imageTren, 0 - 100, 150, this);
         }
         if (imageSuburbano != null) {
-            pen.drawImage(imageSuburbano, 20, 250, this);
+            pen.drawImage(imageSuburbano, 0 - 100, 250, this);
         }
         if (imageTrailer != null) {
-            pen.drawImage(imageTrailer, 20, 350, this);
+            pen.drawImage(imageTrailer, 0 - 100, 350, this);
         }
         if (imageAutomovil != null) {
-            pen.drawImage(imageAutomovil, 20, 450, this);
+            pen.drawImage(imageAutomovil, 0 - 100, 450, this);
         }
     }
 
@@ -107,7 +105,7 @@ public class AnimationCanvas extends Canvas implements Runnable {
                     pen.drawString(String.valueOf(j), 350, 80);
                     pen.drawString(String.valueOf(j), 350, 100);
                     pen.drawString(String.valueOf(j), 350, 120);
-                    pen.drawImage(imageTren, j, 150, this);
+                    pen.drawImage(imageTren, j - 100, 150, this);
                 }
                 if (imageSuburbano != null) {
                     pen.setColor(Color.BLUE);
@@ -118,7 +116,7 @@ public class AnimationCanvas extends Canvas implements Runnable {
                     pen.drawString(String.valueOf(j), 500, 80);
                     pen.drawString(String.valueOf(j), 500, 100);
                     pen.drawString(String.valueOf(j), 500, 120);
-                    pen.drawImage(imageSuburbano, j, 250, this);
+                    pen.drawImage(imageSuburbano, j - 100, 250, this);
                 }
                 if (imageTrailer != null) {
                     pen.setColor(Color.BLUE);
@@ -129,7 +127,7 @@ public class AnimationCanvas extends Canvas implements Runnable {
                     pen.drawString(String.valueOf(j), 650, 80);
                     pen.drawString(String.valueOf(j), 650, 100);
                     pen.drawString(String.valueOf(j), 650, 120);
-                    pen.drawImage(imageTrailer, j, 350, this);
+                    pen.drawImage(imageTrailer, j - 100, 350, this);
                 }
                 if (imageAutomovil != null) {
                     pen.setColor(Color.BLUE);
@@ -140,7 +138,7 @@ public class AnimationCanvas extends Canvas implements Runnable {
                     pen.drawString(String.valueOf(j), 800, 80);
                     pen.drawString(String.valueOf(j), 800, 100);
                     pen.drawString(String.valueOf(j), 800, 120);
-                    pen.drawImage(imageAutomovil, j, 450, this);
+                    pen.drawImage(imageAutomovil, j - 100, 450, this);
                 }
                 Thread.sleep(20);
             }
