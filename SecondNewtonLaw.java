@@ -1,10 +1,10 @@
 
 public class SecondNewtonLaw {
 
-    private static double frictionRailCoefficient = 0.11;
-    private static double frictionTireRoadCoefficient = 0.49;
-    private static double gravityAcceleration = 9.8;
-    double mass = 0;
+    public static double frictionRailCoefficient = 0.11;
+    public static double frictionTireRoadCoefficient = 0.49;
+    public static double gravityAcceleration = 9.8;
+    public double mass = 0;
     double speed = 0;
     String veicle = "";
 
@@ -23,12 +23,12 @@ public class SecondNewtonLaw {
 
     public void convertValuesToMeterSecondScale() {
         this.mass = mass * 1000;
-        this.speed = speed * 10 / 36;
+        this.speed = (float) Math.round((speed * 10 / 36) * 100.0) / 100.0;
     }
 
     // step 1
     public Double calculateWeight() {
-        return mass / gravityAcceleration;
+        return (float) Math.round((mass / gravityAcceleration) * 100.0) / 100.0;
     }
 
     // step 3
@@ -43,11 +43,13 @@ public class SecondNewtonLaw {
     public Double calculateForce() {
         Double m = calculateMass();
         Double a = calculateAcceleration();
-
+        Double force;
         if (this.veicle.equals("train") || this.veicle.equals("interurban"))
-            return (a * m) + ((frictionRailCoefficient * gravityAcceleration) * m);
+            force = (a * m) + ((frictionRailCoefficient * gravityAcceleration) * m);
         else {
-            return (a * m) + ((frictionTireRoadCoefficient * gravityAcceleration) * m);
+            force = (a * m) + ((frictionTireRoadCoefficient * gravityAcceleration) * m);
         }
+
+        return (float) Math.round(force * 100.0) / 100.0;
     }
 }

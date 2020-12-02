@@ -13,6 +13,7 @@ import java.awt.Color;
 public class AnimationCanvas extends Canvas implements Runnable {
 
     private static final long serialVersionUID = 1L;
+    SecondNewtonLaw secondNewtonLaw;
     Image imageTren, imageSuburbano, imageTrailer, imageAutomovil;
     Thread thread = new Thread(this);
     String[] elements;
@@ -38,8 +39,8 @@ public class AnimationCanvas extends Canvas implements Runnable {
     }
 
     public void drawComponentsWhileAnimation() {
-        pen.drawLine(100, 160, 100, 500);
-        pen.drawLine(1100, 160, 1100, 500);
+        pen.drawLine(100, 180, 100, 530);
+        pen.drawLine(1100, 180, 1100, 530);
         pen.drawString("DESTINO", 1110, 325);
     }
 
@@ -64,7 +65,7 @@ public class AnimationCanvas extends Canvas implements Runnable {
 
     public void draw_initial_selected_elements() {
         if (imageTren != null) {
-            pen.drawImage(imageTren, 0 - 100, 180, this);
+            pen.drawImage(imageTren, 0 - 100, 200, this);
         }
         if (imageSuburbano != null) {
             pen.drawImage(imageSuburbano, 0 - 100, 280, this);
@@ -94,61 +95,66 @@ public class AnimationCanvas extends Canvas implements Runnable {
 
     @Override
     public void run() {
-        int endPoint = 1100;
         long startTime = System.currentTimeMillis();
         long elapsedTime = 0;
-        double currentSpeed = 0;
         try {
             for (j = 1; j <= 1000; j++) {// time comparison
                 elapsedTime = (System.currentTimeMillis() - startTime) / 1000;
-                pen.clearRect(350, 30, 550, 100);
-                pen.clearRect(0, 150, 1098, 450);
+                System.out.println(elapsedTime + "seconds");
+                pen.clearRect(350, 30, 550, 130);
+                pen.clearRect(0, 180, 1098, 480);
                 if (imageTren != null) {
+                    secondNewtonLaw = new SecondNewtonLaw(65.0 + j, 14000.0, "train");
                     pen.setColor(Color.BLUE);
                     pen.drawString("TREN", 350, 20);
                     pen.setColor(Color.BLACK);
-                    pen.drawString(String.valueOf(j) + "m/s", 350, 40);
-                    pen.drawString(String.valueOf(j), 350, 60);
-                    pen.drawString(String.valueOf(j), 350, 80);
-                    pen.drawString(String.valueOf(j), 350, 100);
-                    pen.drawString(String.valueOf(j), 350, 120);
-                    pen.drawImage(imageTren, j - 100, 150, this);
+                    pen.drawString(String.valueOf(secondNewtonLaw.mass) + "m/s", 350, 40);
+                    pen.drawString(String.valueOf(secondNewtonLaw.speed) + "m/s", 350, 60);
+                    pen.drawString(String.valueOf(secondNewtonLaw.calculateWeight()), 350, 80);
+                    pen.drawString(String.valueOf(secondNewtonLaw.calculateAcceleration()), 350, 100);
+                    pen.drawString(String.valueOf(secondNewtonLaw.calculateForce()), 350, 120);
+                    pen.drawString(String.valueOf(SecondNewtonLaw.frictionRailCoefficient), 350, 140);
+                    pen.drawString(String.valueOf(SecondNewtonLaw.gravityAcceleration), 350, 160);
+                    pen.drawImage(imageTren, j - 100, 180, this);
                 }
                 if (imageSuburbano != null) {
                     pen.setColor(Color.BLUE);
                     pen.drawString("TREN MEX-TOL", 500, 20);
                     pen.setColor(Color.BLACK);
-                    // pen.drawString(String.valueOf(speed.calculate(elapsedSeconds, gP, sP - j)) +
-                    // "m/s", 500, 40);
+                    pen.drawString(String.valueOf(j), 500, 40);
                     pen.drawString(String.valueOf(j), 500, 60);
                     pen.drawString(String.valueOf(j), 500, 80);
                     pen.drawString(String.valueOf(j), 500, 100);
                     pen.drawString(String.valueOf(j), 500, 120);
-                    pen.drawImage(imageSuburbano, j - 100, 250, this);
+                    pen.drawString(String.valueOf(j), 500, 140);
+                    pen.drawString(String.valueOf(j), 500, 160);
+                    pen.drawImage(imageSuburbano, j - 100, 280, this);
                 }
                 if (imageTrailer != null) {
                     pen.setColor(Color.BLUE);
                     pen.drawString("TRAILER NOM(012)", 650, 20);
                     pen.setColor(Color.BLACK);
-                    // pen.drawString(String.valueOf(speed.calculate(elapsedSeconds, gP, sP - j)) +
-                    // "m/s", 650, 40);
+                    pen.drawString(String.valueOf(j), 650, 40);
                     pen.drawString(String.valueOf(j), 650, 60);
                     pen.drawString(String.valueOf(j), 650, 80);
                     pen.drawString(String.valueOf(j), 650, 100);
                     pen.drawString(String.valueOf(j), 650, 120);
-                    pen.drawImage(imageTrailer, j - 100, 350, this);
+                    pen.drawString(String.valueOf(j), 650, 140);
+                    pen.drawString(String.valueOf(j), 650, 160);
+                    pen.drawImage(imageTrailer, j - 100, 380, this);
                 }
                 if (imageAutomovil != null) {
                     pen.setColor(Color.BLUE);
                     pen.drawString("AUTO FAMILIAR", 800, 20);
                     pen.setColor(Color.BLACK);
-                    // pen.drawString(String.valueOf(speed.calculate(elapsedSeconds, gP, sP - j)) +
-                    // "m/s", 800, 40);
+                    pen.drawString(String.valueOf(j), 800, 40);
                     pen.drawString(String.valueOf(j), 800, 60);
                     pen.drawString(String.valueOf(j), 800, 80);
                     pen.drawString(String.valueOf(j), 800, 100);
                     pen.drawString(String.valueOf(j), 800, 120);
-                    pen.drawImage(imageAutomovil, j - 100, 450, this);
+                    pen.drawString(String.valueOf(j), 800, 140);
+                    pen.drawString(String.valueOf(j), 800, 160);
+                    pen.drawImage(imageAutomovil, j - 100, 480, this);
                 }
                 Thread.sleep(20);
             }
