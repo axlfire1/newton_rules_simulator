@@ -15,7 +15,6 @@ public class AnimationCanvas extends Canvas implements Runnable {
     private static final long serialVersionUID = 1L;
     Image imageTren, imageSuburbano, imageTrailer, imageAutomovil;
     Thread thread = new Thread(this);
-    Speed speed = new Speed();
     String[] elements;
     Graphics2D drawImage;
     Graphics pen;
@@ -93,22 +92,20 @@ public class AnimationCanvas extends Canvas implements Runnable {
 
     @Override
     public void run() {
-        int gP = 1100;
-        int sP = 100;
+        int endPoint = 1100;
         long startTime = System.currentTimeMillis();
+        long elapsedTime = 0;
+        double currentSpeed = 0;
         try {
-            for (j = 1; j <= 1000; j++) {
-                // time comparison
-                long elapsedTime = System.currentTimeMillis() - startTime;
-                long elapsedSeconds = elapsedTime / 1000;
-
+            for (j = 1; j <= 1000; j++) {// time comparison
+                elapsedTime = (System.currentTimeMillis() - startTime) / 1000;
                 pen.clearRect(350, 30, 550, 100);
                 pen.clearRect(0, 150, 1098, 450);
                 if (imageTren != null) {
                     pen.setColor(Color.BLUE);
                     pen.drawString("TREN", 350, 20);
                     pen.setColor(Color.BLACK);
-                    pen.drawString(String.valueOf(speed.calculate(elapsedSeconds, gP, sP - j)) + "m/s", 350, 40);
+                    pen.drawString(String.valueOf(j) + "m/s", 350, 40);
                     pen.drawString(String.valueOf(j), 350, 60);
                     pen.drawString(String.valueOf(j), 350, 80);
                     pen.drawString(String.valueOf(j), 350, 100);
@@ -119,7 +116,8 @@ public class AnimationCanvas extends Canvas implements Runnable {
                     pen.setColor(Color.BLUE);
                     pen.drawString("TREN MEX-TOL", 500, 20);
                     pen.setColor(Color.BLACK);
-                    pen.drawString(String.valueOf(speed.calculate(elapsedSeconds, gP, sP - j)) + "m/s", 500, 40);
+                    // pen.drawString(String.valueOf(speed.calculate(elapsedSeconds, gP, sP - j)) +
+                    // "m/s", 500, 40);
                     pen.drawString(String.valueOf(j), 500, 60);
                     pen.drawString(String.valueOf(j), 500, 80);
                     pen.drawString(String.valueOf(j), 500, 100);
@@ -130,7 +128,8 @@ public class AnimationCanvas extends Canvas implements Runnable {
                     pen.setColor(Color.BLUE);
                     pen.drawString("TRAILER NOM(012)", 650, 20);
                     pen.setColor(Color.BLACK);
-                    pen.drawString(String.valueOf(speed.calculate(elapsedSeconds, gP, sP - j)) + "m/s", 650, 40);
+                    // pen.drawString(String.valueOf(speed.calculate(elapsedSeconds, gP, sP - j)) +
+                    // "m/s", 650, 40);
                     pen.drawString(String.valueOf(j), 650, 60);
                     pen.drawString(String.valueOf(j), 650, 80);
                     pen.drawString(String.valueOf(j), 650, 100);
@@ -141,7 +140,8 @@ public class AnimationCanvas extends Canvas implements Runnable {
                     pen.setColor(Color.BLUE);
                     pen.drawString("AUTO FAMILIAR", 800, 20);
                     pen.setColor(Color.BLACK);
-                    pen.drawString(String.valueOf(speed.calculate(elapsedSeconds, gP, sP - j)) + "m/s", 800, 40);
+                    // pen.drawString(String.valueOf(speed.calculate(elapsedSeconds, gP, sP - j)) +
+                    // "m/s", 800, 40);
                     pen.drawString(String.valueOf(j), 800, 60);
                     pen.drawString(String.valueOf(j), 800, 80);
                     pen.drawString(String.valueOf(j), 800, 100);
