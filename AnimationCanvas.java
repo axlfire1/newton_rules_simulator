@@ -21,7 +21,7 @@ public class AnimationCanvas extends Canvas implements Runnable {
     int j;
 
     public AnimationCanvas() {
-        setBounds(10, 30, 1223, 515);
+        setBounds(10, 30, 1223, 535);
         setBackground(java.awt.Color.WHITE);
     }
 
@@ -38,22 +38,24 @@ public class AnimationCanvas extends Canvas implements Runnable {
     }
 
     public void drawComponentsWhileAnimation() {
-        pen.drawLine(100, 150, 100, 500);
-        pen.drawLine(1100, 150, 1100, 500);
+        pen.drawLine(100, 160, 100, 500);
+        pen.drawLine(1100, 160, 1100, 500);
         pen.drawString("DESTINO", 1110, 325);
     }
 
     public void drawScoreBoard() {
         // square containing values
         pen.setColor(Color.RED);
-        pen.drawRect(100, 5, 900, 130);
+        pen.drawRect(100, 5, 900, 160);
         pen.setColor(Color.BLUE);
         // Titles:
-        pen.drawString("Velocidad inicial (v):", 130, 40);
-        pen.drawString("Fuerza (f):", 130, 60);
-        pen.drawString("Aceleracion: (a):", 130, 80);
-        pen.drawString("Coeficiente de friccion (µ):", 130, 100);
-        pen.drawString("Aceleraciond de la gravedad (g):", 130, 120);
+        pen.drawString("Masa (m):", 130, 40);
+        pen.drawString("Velocidad (v):", 130, 60);
+        pen.drawString("Peso (w):", 130, 80);
+        pen.drawString("Aceleracion: (a):", 130, 100);
+        pen.drawString("Fuerza (f):", 130, 120);
+        pen.drawString("Coeficiente de friccion (µ):", 130, 140);
+        pen.drawString("Aceleracion de la gravedad (g):", 130, 160);
     }
 
     public void startAnimation() {
@@ -62,16 +64,16 @@ public class AnimationCanvas extends Canvas implements Runnable {
 
     public void draw_initial_selected_elements() {
         if (imageTren != null) {
-            pen.drawImage(imageTren, 0 - 100, 150, this);
+            pen.drawImage(imageTren, 0 - 100, 180, this);
         }
         if (imageSuburbano != null) {
-            pen.drawImage(imageSuburbano, 0 - 100, 250, this);
+            pen.drawImage(imageSuburbano, 0 - 100, 280, this);
         }
         if (imageTrailer != null) {
-            pen.drawImage(imageTrailer, 0 - 100, 350, this);
+            pen.drawImage(imageTrailer, 0 - 100, 380, this);
         }
         if (imageAutomovil != null) {
-            pen.drawImage(imageAutomovil, 0 - 100, 450, this);
+            pen.drawImage(imageAutomovil, 0 - 100, 480, this);
         }
     }
 
