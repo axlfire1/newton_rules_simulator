@@ -51,12 +51,11 @@ public class AnimationCanvas extends Canvas implements Runnable {
         pen.setColor(Color.BLUE);
         // Titles:
         pen.drawString("Masa (m):", 130, 40);
-        pen.drawString("Velocidad (v):", 130, 60);
-        pen.drawString("Peso (w):", 130, 80);
-        pen.drawString("Aceleracion: (a):", 130, 100);
-        pen.drawString("Fuerza (f):", 130, 120);
-        pen.drawString("Coeficiente de friccion (µ):", 130, 140);
-        pen.drawString("Aceleracion de la gravedad (g):", 130, 160);
+        pen.drawString("Velocidad Inicial:", 130, 60);
+        pen.drawString("Velocidad Final:", 130, 80);
+        pen.drawString("Tiempo:", 130, 100);
+        pen.drawString("Aceleracion:", 130, 120);
+        pen.drawString("Fuerza:", 130, 140);
     }
 
     public void startAnimation() {
@@ -100,21 +99,19 @@ public class AnimationCanvas extends Canvas implements Runnable {
         try {
             for (j = 1; j <= 1000; j++) {// time comparison
                 elapsedTime = (System.currentTimeMillis() - startTime) / 1000;
-                System.out.println(elapsedTime + "seconds");
                 pen.clearRect(350, 30, 550, 130);
                 pen.clearRect(0, 180, 1098, 480);
                 if (imageTren != null) {
-                    secondNewtonLaw = new SecondNewtonLaw(65.0 + j, 14000.0, "train");
+                    secondNewtonLaw = new SecondNewtonLaw(1, j, 14000.0, "train");
                     pen.setColor(Color.BLUE);
                     pen.drawString("TREN", 350, 20);
                     pen.setColor(Color.BLACK);
-                    pen.drawString(String.valueOf(secondNewtonLaw.mass) + "m/s", 350, 40);
-                    pen.drawString(String.valueOf(secondNewtonLaw.speed) + "m/s", 350, 60);
-                    pen.drawString(String.valueOf(secondNewtonLaw.calculateWeight()), 350, 80);
-                    pen.drawString(String.valueOf(secondNewtonLaw.calculateAcceleration()), 350, 100);
-                    pen.drawString(String.valueOf(secondNewtonLaw.calculateForce()), 350, 120);
-                    pen.drawString(String.valueOf(SecondNewtonLaw.frictionRailCoefficient), 350, 140);
-                    pen.drawString(String.valueOf(SecondNewtonLaw.gravityAcceleration), 350, 160);
+                    pen.drawString(String.valueOf(secondNewtonLaw.mass) + " kg", 350, 40);
+                    pen.drawString(String.valueOf(1) + " m/s", 350, 60);
+                    pen.drawString(String.valueOf(j) + " m/s", 350, 80);
+                    pen.drawString(String.valueOf(elapsedTime) + " s", 350, 100);
+                    pen.drawString(String.valueOf(secondNewtonLaw.calculateAcceleration() + " m/s2"), 350, 120);
+                    pen.drawString(String.valueOf(secondNewtonLaw.calculateForce() + " Kg*m/s2"), 350, 140);
                     pen.drawImage(imageTren, j - 100, 180, this);
                 }
                 if (imageSuburbano != null) {
@@ -127,7 +124,7 @@ public class AnimationCanvas extends Canvas implements Runnable {
                     pen.drawString(String.valueOf(j), 500, 100);
                     pen.drawString(String.valueOf(j), 500, 120);
                     pen.drawString(String.valueOf(j), 500, 140);
-                    pen.drawString(String.valueOf(j), 500, 160);
+
                     pen.drawImage(imageSuburbano, j - 100, 280, this);
                 }
                 if (imageTrailer != null) {
@@ -140,7 +137,7 @@ public class AnimationCanvas extends Canvas implements Runnable {
                     pen.drawString(String.valueOf(j), 650, 100);
                     pen.drawString(String.valueOf(j), 650, 120);
                     pen.drawString(String.valueOf(j), 650, 140);
-                    pen.drawString(String.valueOf(j), 650, 160);
+
                     pen.drawImage(imageTrailer, j - 100, 380, this);
                 }
                 if (imageAutomovil != null) {
@@ -153,7 +150,7 @@ public class AnimationCanvas extends Canvas implements Runnable {
                     pen.drawString(String.valueOf(j), 800, 100);
                     pen.drawString(String.valueOf(j), 800, 120);
                     pen.drawString(String.valueOf(j), 800, 140);
-                    pen.drawString(String.valueOf(j), 800, 160);
+
                     pen.drawImage(imageAutomovil, j - 100, 480, this);
                 }
                 Thread.sleep(20);
