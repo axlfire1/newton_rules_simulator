@@ -96,6 +96,8 @@ public class AnimationCanvas extends Canvas implements Runnable {
     public void run() {
         long startTime = System.currentTimeMillis();
         long elapsedTime = 0;
+        String value1 = " m/s2";
+        String value2 = " Kg*m/s2";
         try {
             for (j = 1; j <= 1000; j++) {// time comparison
                 elapsedTime = (System.currentTimeMillis() - startTime) / 1000;
@@ -110,8 +112,8 @@ public class AnimationCanvas extends Canvas implements Runnable {
                     pen.drawString(String.valueOf(1) + " m/s", 350, 60);
                     pen.drawString(String.valueOf(j) + " m/s", 350, 80);
                     pen.drawString(String.valueOf(elapsedTime) + " s", 350, 100);
-                    pen.drawString(String.valueOf(secondNewtonLaw.calculateAcceleration() + " m/s2"), 350, 120);
-                    pen.drawString(String.valueOf(secondNewtonLaw.calculateForce() + " Kg*m/s2"), 350, 140);
+                    pen.drawString(String.valueOf(secondNewtonLaw.calculateAcceleration() + value1), 350, 120);
+                    pen.drawString(String.valueOf(secondNewtonLaw.calculateForce() + value2), 350, 140);
                     pen.drawImage(imageTren, j - 100, 180, this);
                 }
                 if (imageSuburbano != null) {
@@ -123,8 +125,8 @@ public class AnimationCanvas extends Canvas implements Runnable {
                     pen.drawString(String.valueOf(1) + " m/s", 500, 60);
                     pen.drawString(String.valueOf(j) + " m/s", 500, 80);
                     pen.drawString(String.valueOf(elapsedTime) + " s", 500, 100);
-                    pen.drawString(String.valueOf(secondNewtonLaw.calculateAcceleration() + " m/s2"), 500, 120);
-                    pen.drawString(String.valueOf(secondNewtonLaw.calculateForce() + " Kg*m/s2"), 500, 140);
+                    pen.drawString(String.valueOf(secondNewtonLaw.calculateAcceleration() + value1), 500, 120);
+                    pen.drawString(String.valueOf(secondNewtonLaw.calculateForce() + value2), 500, 140);
 
                     pen.drawImage(imageSuburbano, j - 100, 280, this);
                 }
@@ -137,8 +139,8 @@ public class AnimationCanvas extends Canvas implements Runnable {
                     pen.drawString(String.valueOf(1) + " m/s", 650, 60);
                     pen.drawString(String.valueOf(j) + " m/s", 650, 80);
                     pen.drawString(String.valueOf(elapsedTime) + " s", 650, 100);
-                    pen.drawString(String.valueOf(secondNewtonLaw.calculateAcceleration() + " m/s2"), 650, 120);
-                    pen.drawString(String.valueOf(secondNewtonLaw.calculateForce() + " Kg*m/s2"), 650, 140);
+                    pen.drawString(String.valueOf(secondNewtonLaw.calculateAcceleration() + value1), 650, 120);
+                    pen.drawString(String.valueOf(secondNewtonLaw.calculateForce() + value2), 650, 140);
 
                     pen.drawImage(imageTrailer, j - 100, 380, this);
                 }
@@ -151,8 +153,8 @@ public class AnimationCanvas extends Canvas implements Runnable {
                     pen.drawString(String.valueOf(1) + " m/s", 800, 60);
                     pen.drawString(String.valueOf(j) + " m/s", 800, 80);
                     pen.drawString(String.valueOf(elapsedTime) + " s", 800, 100);
-                    pen.drawString(String.valueOf(secondNewtonLaw.calculateAcceleration() + " m/s2"), 800, 120);
-                    pen.drawString(String.valueOf(secondNewtonLaw.calculateForce() + " Kg*m/s2"), 800, 140);
+                    pen.drawString(String.valueOf(secondNewtonLaw.calculateAcceleration() + value1), 800, 120);
+                    pen.drawString(String.valueOf(secondNewtonLaw.calculateForce() + value2), 800, 140);
 
                     pen.drawImage(imageAutomovil, j - 100, 480, this);
                 }
