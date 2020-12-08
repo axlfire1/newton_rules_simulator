@@ -7,21 +7,19 @@ public class SecondNewtonLaw {
     public double mass = 0;
     double speedInitial = 0;
     double speedFinal = 0;
+    long elapsedtime = 0;
 
     String veicle = "";
 
-    public SecondNewtonLaw(int speedInitial, int speedFinal, Double mass, String veicle) {
+    public SecondNewtonLaw(int speedFinal, Double mass, String veicle) {
         this.mass = mass;
         this.veicle = veicle;
-        this.speedInitial = speedInitial;
         this.speedFinal = speedFinal;
         convertValuesToMeterSecondScale();
     }
 
     public void convertValuesToMeterSecondScale() {
         this.mass = mass * 1000;
-        this.speedInitial = (float) Math.round((speedInitial * 10 / 36) * 100.0) / 100.0;
-        this.speedFinal = (float) Math.round((speedFinal * 10 / 36) * 100.0) / 100.0;
     }
 
     // step 1
@@ -31,14 +29,15 @@ public class SecondNewtonLaw {
 
     // step 3
     public Double calculateMass() {
-        return calculateWeight() / gravityAcceleration;
+        return mass;
     }
 
     public Double calculateAcceleration() {
         // 22 final time
         // 1 initial time
         convertValuesToMeterSecondScale();
-        return (this.speedFinal - this.speedInitial) / (23 - 1);
+        double a = (this.speedFinal - 0.02) / (23 - 1);
+        return Math.round(a * 100.0) / 100.0;
     }
 
     public Double calculateForce() {
@@ -51,6 +50,6 @@ public class SecondNewtonLaw {
             force = (a * m) + ((frictionTireRoadCoefficient * gravityAcceleration) * m);
         }
 
-        return (float) Math.round(force * 100.0) / 100.0;
+        return force;
     }
 }
