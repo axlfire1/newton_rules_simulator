@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 
-public class MainFrame extends JFrame implements ActionListener {
+public class Main extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
     // UI COMPONENTS
@@ -35,7 +35,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
     // CONSTRUCTOR
 
-    public MainFrame() {
+    public Main() {
         setLayout(null);
         setTitle("2ª Ley de Newton Aplicado a un Sistema Ferroviario");
         setDefaultLookAndFeelDecorated(true);
@@ -51,7 +51,7 @@ public class MainFrame extends JFrame implements ActionListener {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                MainFrame window = new MainFrame();
+                Main window = new Main();
                 window.buildMenus();
                 window.buildLayouts();
                 window.menuActions();

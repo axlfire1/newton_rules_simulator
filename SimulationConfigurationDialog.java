@@ -30,7 +30,7 @@ public class SimulationConfigurationDialog {
     JCheckBox[] boxes = new JCheckBox[food.length];
     ArrayList<String> selectedList = new ArrayList<String>();
     String allowedVeicles = "";
-    MainFrame previousFrame;
+    Main previousFrame;
 
     // CONSTRUCTOR
     public SimulationConfigurationDialog(String allowedVeicles) {
