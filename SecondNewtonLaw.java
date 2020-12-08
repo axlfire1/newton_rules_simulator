@@ -50,6 +50,6 @@ public class SecondNewtonLaw {
             force = (a * m) + ((frictionTireRoadCoefficient * gravityAcceleration) * m);
         }
 
-        return force;
+        return force / 1000;
     }
 }

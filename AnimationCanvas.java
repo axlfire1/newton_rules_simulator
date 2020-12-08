@@ -47,7 +47,7 @@ public class AnimationCanvas extends Canvas implements Runnable {
     public void drawScoreBoard() {
         // square containing values
         pen.setColor(Color.RED);
-        pen.drawRect(100, 5, 900, 160);
+        pen.drawRect(50, 5, 1000, 160);
         pen.setColor(Color.BLUE);
         // Titles:
         pen.drawString("Masa (m):", 130, 40);
@@ -99,7 +99,7 @@ public class AnimationCanvas extends Canvas implements Runnable {
         try {
             for (j = 1; j <= 1000; j++) {// time comparison
                 elapsedTime = (System.currentTimeMillis() - startTime) / 1000;
-                pen.clearRect(350, 30, 550, 130);
+                pen.clearRect(350, 30, 700, 130);
                 pen.clearRect(0, 180, 1098, 480);
                 if (imageTren != null) {
                     secondNewtonLaw = new SecondNewtonLaw(j, 14000.0, "train");
